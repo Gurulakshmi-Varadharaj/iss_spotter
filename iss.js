@@ -52,14 +52,12 @@ const fetchCoordsByIP = function (ip, callback) {
       callback(err, null);
       return;
     }
-
     // if non-200 status, assume server error
     if (response.statusCode !== 200) {
       const msg = `Status Code ${response.statusCode} when fetching Location of IP. Response: ${body}`;
       callback(Error(msg), null);
       return;
     }
-
     if (body === '[]') {
       callback('Location of IP not found', null);
       return;
@@ -72,7 +70,6 @@ const fetchCoordsByIP = function (ip, callback) {
       callback(null, objReturn);
       return;
     }
-
   });
 };
 
@@ -108,29 +105,6 @@ const fetchISSFlyOverTimes = function (coords, callback) {
     }
   });
 };
-
-// use request to fetch IP address from JSON API
-//const httprequest = `http://api.open-notify.org/iss-pass.json?lat=${coords.latitude}&lon=${coords.longitude}`;
-//const httprequest = 'http://api.open-notify.org/iss-pass.json?lat=45.34380&lon=-75.71570';
-//To send request to API and get the Latitude and Longitude of IP address
-/****request(httprequest, (err, response, body) => {
-  //Handling rquest Errors
-  if (err) {
-    throw new err;
-  }
-
-  if (body === '[]') {
-    console.log('ISSFlyOverTimes not found');
-  } else {
-    const data = JSON.parse(body).response;
-    console.log(data);
-  }
-
-});***/
-
-//module.exports = { fetchMyIP };
-//module.exports = { fetchCoordsByIP };
-//module.exports = { fetchISSFlyOverTimes };
 
 /**
  * Orchestrates multiple API requests in order to determine the next 5 upcoming ISS fly overs for the user's current location.
