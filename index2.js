@@ -1,13 +1,8 @@
+//Modularized code
 const { nextISSTimesForMyLocation } = require('./iss_promised');
 
-/***fetchMyIP()
-  .then(fetchCoordsByIP)
-  .then(fetchISSFlyOverTimes)
-  .then((body) => {
-    console.log(body);
-  })***/
-
-const passTimesHumanRead = function(passTimes) {
+//To print the PassTimes in human readable format
+const passTimesHumanRead = function (passTimes) {
   for (const pass of passTimes) {
     const datetime = new Date(0);
     datetime.setUTCSeconds(pass.risetime);
@@ -16,6 +11,7 @@ const passTimesHumanRead = function(passTimes) {
   }
 };
 
+//Interact with promises using .then and .catch
 nextISSTimesForMyLocation()
   .then(passTimes => {
     passTimesHumanRead(passTimes);
